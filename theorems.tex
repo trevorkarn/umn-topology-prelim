@@ -1,0 +1,44 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+	 \newtheorem*{theorem}{Theorem}
+	 \newtheorem{proposition}{Proposition}
+	 \newtheorem*{lemma}{Lemma}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+
+\title{Useful theorems for Manifolds and Topology Preliminary Exams}
+\author{University of Minnesota}
+
+\begin{document}
+
+\maketitle
+
+\section{Fundamental Group}
+
+\begin{theorem}[Siefert-van Kampen]
+
+Let $U,V$ be open, path connected topological spaces such that $U \cap V$ is nonempty and path connected. The inclusion maps of $U \hookrightarrow U \cup V$ and $V \hookrightarrow U \cup V$ induce group homomorphisms $j_U:\pi_1(U) \rightarrow \pi_1(U \cup V)$ and $j_V: \pi_1(V) \rightarrow \pi_1(U \cup V)$. Then $U \cup V$ is path connected, and $j_U, j_V$ form a commutative pushout diagram:
+			
+			\begin{center}\begin{tikzcd}
+				& \pi_1(U) \arrow[rd,dashed] \arrow[rrd, bend left=10,"j_U"]& \\
+				\pi_1(U \cap V) \arrow[ru,"i_U"] \arrow[rd,"i_V"] & & \pi_1(U) *_{\pi_1(U \cap V)}\pi_1(V) \arrow[r,dashed,"k"] & \pi_1(U \cup V) \\
+				& \pi_1(V) \arrow[ru,dashed] \arrow[rru, bend right=10,"j_V"]&
+			\end{tikzcd}\end{center}
+
+Since this is a pushout diagram, then $k$ is an isomorphism.
+
+\end{theorem}
+
+\section{Covering Spaces}
+
+\begin{theorem}
+Let $X$ be path connected, locally path connected, and semilocally simply connected. Then there is a bijection between the set of basepoint-preserving isomorphism classes of path-connected covering spaces $p:(\tilde{X},\tilde{x}_0) \rightarrow (X,x_0)$ and the set of subgroups of $\pi_1(X,x_0)$ obtained by associating the subgroup $p_*(\pi_1(\tilde{X}, \tilde{x}_0))$ to the covering space $(\tilde{X}, \tilde{x}_0)$. If basepoints are ignored, this gives a bijection between isomorphism classes of path-connected covering spaces $p: \tilde{X} \rightarrow X$ and conjugacy classes of subgroups of $\pi_1(X,x_0)$.
+\end{theorem}
+
+\begin{lemma}
+	If $G$ is an abelian group, then the conjugacy classes of $G$ are all singletons, so if $G$ is finite, then $|G|$ is the number of conjugacy classes.
+\end{lemma}
+
+\end{document}

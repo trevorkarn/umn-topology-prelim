@@ -1,0 +1,25 @@
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{enumitem}
+% Thanks to 
+% https://tex.stackexchange.com/questions/247681/how-to-create-checkbox-todo-list/313337
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\noindent Here is a list of exams which were written by Tyler Lawson (writer of 2020 spring prelim)
+
+\begin{todolist}
+	\item Fall 2019
+	\item Spring 2018
+	\item Fall 2017
+	\item Spring 2017
+	\item Fall 2016
+	\item Spring 2016
+	\item Fall 2015
+\end{todolist}
+
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+	\newtheorem*{definition}{Definition}
+	\newtheorem*{theorem}{Theorem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+
+\title{\href{https://math.umn.edu/sites/math.umn.edu/files/exams/mantopf15.pdf}{Fall 2015 Manifolds and Topology Preliminary Exam}}
+\author{University of Minnesota}
+\date{}
+\begin{document}
+\maketitle
+
+\textbf{Part A}
+\begin{enumerate}
+	\item \begin{enumerate}
+		
+		\item Define what it means for two paths $\alpha, \beta: [0,1] \rightarrow X$, with the same start and end points, to be homotopic. Show that this is an equivalence relation.
+		
+		\begin{proof}
+			Let $X$ be a topological space and $\alpha,\beta$ be as in the problem statement. Then $\alpha, \beta$ are said to be homotopic if there is a function $H(s,t):[0,1]^2 \rightarrow X$, continuous in both $s$ and $t$, such that $H(0,t) = \alpha(t)$ and $H(1,t)=\beta(t)$. We call such a function a homotopy from $\alpha$ to $\beta$. If there is a homotopy from $\alpha$ to $\beta$, we also say that $\alpha, \beta$ are homotopic.
+			
+			We now show that the relation $\sim$ defined by $\alpha \sim \beta$ if $\alpha$ is homotopic to $\beta$ is reflexive, symmetric, and transitive. 
+			To see reflexivity observe that $H(s,t) = \alpha(t)$ for all $s$ is a homotopy from $\alpha$ to itself.
+			To symmetricity, note that if $H(s,t)$ is a homotopy from $\alpha$ to $\beta$, then $H(1-s,t)$ is a homotopy from $\beta$ to $\alpha$.
+			To see transitivity, let $\alpha \sim \beta$ and $\beta \sim \gamma$, and let $H_1$ be a homotopy from $\alpha$ to $\beta$ and $H_2$ be a homotopy from $\beta$ to $\gamma$. 
+			Then 
+			\[H(s,t) := \begin{cases} H_1(2s,t) & 0 \leq s \leq 1/2 \\ H_2(2s-1,t) & 1/2 \leq s \leq 1 \end{cases}\] 
+			is a homotopy from $\alpha$ to $\gamma$, so $\alpha \sim \gamma$.
+		\end{proof}
+		
+		\item Define what it means for a space to be simply connected
+		
+		\begin{definition}
+			Let $X$ be a topological space. Then $X$ is simply connected if and only if there is a unique homotopy class of paths connecting any two points in $X$. Equivalently, we say $X$ is simply connected if the fundamental group $\pi_1(X)$ is the trivial group.
+		\end{definition}
+		
+		\item Give a complete statement of the Siefert-van Kampen theorem relating the fundamental groups of $U,\; V,\;U \cup V,\; U \cap V$, including all necessary assumptions.
+		
+		\begin{theorem}
+			Let $U,V$ be open, path connected topological spaces such that $U \cap V$ is nonempty and path connected. The inclusion maps of $U \hookrightarrow U \cup V$ and $V \hookrightarrow U \cup V$ induce group homomorphisms $j_U:\pi_1(U) \rightarrow \pi_1(U \cup V)$ and $j_V: \pi_1(V) \rightarrow \pi_1(U \cup V)$. Then $U \cup V$ is path connected, and $j_U, j_V$ form a commutative pushout diagram:
+			
+			\begin{center}\begin{tikzcd}
+				& \pi_1(U) \arrow[rd,dashed] \arrow[rrd, bend left=10,"j_U"]& \\
+				\pi_1(U \cap V) \arrow[ru,"i_U"] \arrow[rd,"i_V"] & & \pi_1(U) *_{\pi_1(U \cap V)}\pi_1(V) \arrow[r,dashed,"k"] & \pi_1(U \cup V) \\
+				& \pi_1(V) \arrow[ru,dashed] \arrow[rru, bend right=10,"j_V"]&
+			\end{tikzcd}\end{center}
+
+Since this is a pushout diagram, then $k$ is an isomorphism.
+		\end{theorem}
+		
+		\item Describe the fundamental group of $\mathbb{R}^2 - \{(-1,0), (1,0) \}$
+		
+		\begin{proof} Define $X:=\mathbb{R}^2 - \{(-1,0), (1,0) \}$.
+		Consider the sets $U = \{ (x,y) : y > -1/2\} - \{(1,0)\}$ and $V = \{(x,y) : x < 1/2\}-\{(-1,0)\}$. First, observe that $U$ and $V$ both deformation retract to circles, and so $\pi_1(U) \cong \pi_1(V) \cong \mathbb{Z}$. Then, observe that $U,V$ satisfy the hypotheses of the Siefert-van Kampen theorem, since $U \cap V = \{(x,y) \in \mathbb{R}^2 : -1/2 < y < 1/2 \}$ which is non-empty and path connected.
+		
+		Then the theorem tells us that $\pi_1(X) = \pi_1(U) *_{\pi_1(U \cap V)} \pi_1(V)$. We see that $U \cap V$ is contractable, and so $\pi_1(U \cap V)$ is the trivial group. Then this includes into $\pi_1(U)$ and $\pi_1(V)$ by taking the single (identity) element of $\pi_1(U \cap V)$ to the identities in $\pi_1(U)$ and $\pi_1(V)$ respectively. Thus, the amalgamated product $\pi_1(U) * \pi_1(V) / N$ where $N = \langle i_V(g)i_U(g)^{-1}, i_U(g) i_V(g)^{-1} : g \in \pi_1(U \cap V)\rangle$.
+		
+		To compute $N$, we note that since $i_U, i_V$ are group homomorphisms, they take the identity to the identity, and since the only $g \in \pi_1(U \cap V)$ is exactly the identity, then \[N = \langle i_U(e)i_V(e)^{-1}, i_V(e)i_U(e)^{-1} \rangle = \langle e \rangle\] so $N$ is the trivial group.
+		
+		Now since $N$ is trivial, $\pi_1(U)* \pi_1(V)/N \cong\pi_1(U)* \pi_1(V) \cong \mathbb{Z}*\mathbb{Z}$
+		\end{proof}
+		
+		\end{enumerate}
+		
+\item 	\begin{enumerate}
+			\item State the classification theorem relating (connected) covering spaces of a (connected) space $X$ to the fundamental group of $X$. (You may take as given the standard assumptions that $X$ is locally path connected and locally simply connected.)
+			
+			\begin{theorem}
+				Let $X$ be connected, locally path connected, and locally simply connected. Then there is a bijection between isomorphism classes of path connected covering spaces and conjugacy classes of $\pi_1(X, x_0)$.
+			\end{theorem}
+			
+			\item Suppose $X$ is as in the previous problem and that the fundamental group of $X$ is $\mathbb{Z}/2 \times \mathbb{Z}/4$. How many isomorphism classes of connecting covering space does $X$ have?
+			
+			\begin{proof}
+				Because of the result of the last theorem, this boils down to counting conjugacy classes of $\mathbb{Z}/2 \times \mathbb{Z}/4$.
+				Note that $\mathbb{Z}/2 \times \mathbb{Z}/4$ is an abelian group and so its conjugacy classes are singletons. 
+				Thus, the number of isomorphism classes of connected covering spaces of $X$
+				 is the size of $\mathbb{Z}/2 \times \mathbb{Z}/4$, which is 8.
+			\end{proof}
+			
+			\item A continuous map $f:X \rightarrow Y$ is a local homeomorphism if, for every point $x \in X$, there exist open neighborhoods $U$ of $x$ and $V$ of $f(x)$ so that $f$ restricts to a homeomorphism $U \rightarrow V$. Give an example of a local homeomorphism which is not a covering map.
+		\end{enumerate}
+		
+	\item \begin{enumerate} 
+		\item Calculate the homology groups of the torus $S^1 \times S^1$
+		\begin{proof}
+			We know that there is one connected component, one hole (the donut hole), and one void (where the jelly filling would go). Thus, we expect the answer to be 
+			\[H_n(S^1\times S^1) = \begin{cases} \mathbb{Z} & n = 0,1,2 \\ 0 & \text{otherwise} \end{cases}\]
+			
+			To prove this, we use the Mayer-Vietoris sequence, which states that the long exact sequence 
+			
+			I don't think M-V, and I don't think relative homology sequence.
+		\end{proof}
+		
+		\end{enumerate}
+\end{enumerate}
+
+
+\end{document}
