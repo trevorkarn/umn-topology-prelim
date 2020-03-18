@@ -6,6 +6,7 @@
 	\newtheorem*{lemma}{Lemma}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -45,6 +46,7 @@
 		Let $X$ be the annulus of inner radius $1$ and outer radius $2$, shown below,:
 		
 		\begin{center}
+			% TODO: Make this picture prettier.
                     \begin{tikzpicture}
                     	\filldraw[pattern=dots,draw=white] (0 ,-1) arc [radius=1, start angle=-90, delta angle=180]
                   				-- (0,2) arc [radius=2, start angle=90, delta angle=-180]
@@ -55,37 +57,74 @@
                   				-- (0,-2) arc [radius=2, start angle=-90, delta angle=-180]
                  				 -- cycle;
 				 
-			\draw[thick] (0,1) -- (0,2);
-			\draw[thick] (0,-1) -- (0,-2);
+			%\draw[thick] (0,1) -- (0,2);
+			%\draw[thick] (0,-1) -- (0,-2);
                     	\draw[thick, dashed] (0,0) circle (2cm);
 			\draw[thick, dashed] (0,0) circle (1cm);
 		
                     \end{tikzpicture}
                     \end{center}
-                    and let $U$ be the closed left half of the annulus (shown crosshatched) and let $V$ be the closed right half of the annulus (shown filled with dots), where both $U, V$ include the line segments $\ell_+ = [(0,1),(0,2)]$ and $\ell_-=[(0,-1),(0,-2)]$.
                     
-                    Then $\pi_1(U) = \pi_1(V) = 0$ since both are contractible. Additionally, $\pi_1(U \cap V) =  0$ since both the line segments $\ell_+, \ell_-$ are contractible so regardless of choice of basepoint we are in a contractible connected component. $U$ and $V$ do not violate the hypothesis of the Siefert-van Kampen theorem, because the intersection $U \cap V$ is not path-connected, however if it did, the theorem would tell us that $\pi_1(X) = 0/0 \cong 0$.
+                    and let $U$ be the left half of the annulus (shown crosshatched) with $\epsilon$ extra and let $V$ be the right half of the annulus (shown filled with dots) also with $\epsilon$ extra, where both $U, V$ intersect in $\epsilon$-fattenings of the line segments $\ell_+ = [(0,1),(0,2)]$ and $\ell_-=[(0,-1),(0,-2)]$.
                     
-                    On the other hand, we know that $\pi_1( U \cup V) \cong \mathbb{Z}$ because the generators are the trivial loop and the loop which contains the hole in its interior.
+                    Then $\pi_1(U) = \pi_1(V) = 0$ since both are contractible. Additionally, $\pi_1(U \cap V) =  0$ since both the $\epsilon$-fattenings of line segments $\ell_+, \ell_-$ are contractible so regardless of choice of basepoint we are in a contractible connected component. $U$ and $V$ do not violate the hypothesis of the Siefert-van Kampen theorem, because the intersection $U \cap V$ is not path-connected. However if we were to ignore the requirement of path-connectedness, we might conclude that the theorem says $\pi_1(X) = 0/0 \cong 0$.
+                    
+                    But we know that $\pi_1( U \cup V) \cong \mathbb{Z}$ because the generators are the trivial loop and the loop which contains the hole in its interior.
                     
                     Thus, we cannot choose $U,V$ as in this example if we wish to use the Siefert-van Kampen theorem.
 	\end{proof}
 	
-	\item Explain why the inclusion $\mathbb{R}^2 - \{0\} \rightarrow \mathbb{R}$ is not a covering map.
+	\item Explain why the inclusion $\mathbb{R}^2 \backslash \{0\} \rightarrow \mathbb{R}$ is not a covering map.
 	
 	% See Hatcher prop 1.31
 	\begin{proof}
-		Suppose $\iota : \mathbb{R}^2 - \{ 0 \} \rightarrow \mathbb{R}$ were a covering map. 
+		Suppose $\iota : \mathbb{R}^2 \backslash \{ 0 \} \rightarrow \mathbb{R}$ were a covering map. 
 		
-		Then it is a theorem that the induced map $\iota_*: \mathbb{R}^2 - \{ 0 \} \rightarrow \{ 0 \}$ is an injection. 
+		Then it is a theorem that the induced map on fundamental groups $\iota_*: \pi_1(\mathbb{R}^2 \backslash \{ 0 \}) \rightarrow \pi_1(\mathbb{R})$ is an injection. 
 		
-		On the other hand, $\pi_1 (\mathbb{R}^2 - \{ 0 \}) \cong \mathbb{Z}$ and $\pi_1( \mathbb{R} ) = 0$ and so no injection from $\mathbb{Z} \rightarrow 0$ exists, contradicting that $\iota$ were a covering map.
+		On the other hand, $\pi_1 (\mathbb{R}^2 \backslash \{ 0 \}) \cong \mathbb{Z}$ and $\pi_1( \mathbb{R} ) = 0$ and so no injection from $\mathbb{Z} \rightarrow 0$ exists, contradicting that $\iota$ were a covering map.
 	\end{proof} 
 	
+	\item Define the \textit{degree} of a map $f: S^n \rightarrow S^n$ for $n > 0$. Explain why $n=0$ is a special case.
 	
-	%\item Let $X$ be the space of upper triangular invertible $2\times 2$ matrices. Determine the homology groups $H_*(x)$. 
+	\begin{definition}
+		Let $f: S^n \rightarrow S^n$ be a map. Then there is an induced homomorphism on homology $f_* : H_n (S^n) \rightarrow H_n (S^n)$. Since $H_n(S^n) \cong \mathbb{Z}$, then $f_*$ must be multiplication by an integer (otherwise it would not be a homomorphism). The integer $k$ such that $f_*(x) = kx$ is called the degree of the map.
+		
+		Note that $n=0$ is a special case, since $H_0(S^0) \cong \mathbb{Z}^2$, and so ``multiplication by an integer" must be more carefully defined.
+	\end{definition}
+	
+	\item Suppose $X, Y$ are spaces that are both abstractly homeomorphic to $S^7$. Show that the ``degree" of the map $f: X \rightarrow Y$ is only well-defined up to sign.
+	
+	\item Let $X$ be the space of upper triangular invertible $2\times 2$ matrices:
+	\[X = \left \{ \begin{bmatrix} a & b \\ 0 & d \end{bmatrix} \in M_2 (\mathbb{R}) : a \neq 0, d \neq 0\right \} \subseteq \mathbb{R}^3\]
+	 Determine the homology groups $H_*(X)$. 
 
 	%See Hatcher section 3.D
+	
+	\begin{proof}
+		First, note that $X \cong (\mathbb{R} \backslash \{0\}) \times (\mathbb{R}) \times (\mathbb{R} \backslash \{0\})\subseteq \mathbb{R}^3$ by the map taking $\begin{bmatrix} a & b \\ 0 & d \end{bmatrix} \mapsto (a,b,d)$.
+		
+		Thus, we compute the homology groups $H_*(\mathbb{R} \backslash \{0\})$ and $H_*(\mathbb{R})$.
+		
+		Since $X_1 := \mathbb{R} \backslash \{0\}$ is the disjoint union of the strictly positive real axis $\mathbb{R}_{> 0}$ and the strictly negative real axis $\mathbb{R}_{< 0}$, which are homeomorphic via the map $x \mapsto -x$,
+		we have 
+		\[H_n(\mathbb{R}_{> 0}) = H_n(\mathbb{R}_{< 0}) = \begin{cases} \mathbb{Z} &n=0 \\ 0 &\text{else}  \end{cases} \]
+		Which means that
+		\[H_n(\mathbb{R} \backslash 0) = H_n(\mathbb{R}_{< 0}\sqcup \mathbb{R}_{> 0} ) = H_n(\mathbb{R}_{< 0}) \oplus H_n(\mathbb{R}_{> 0} )  = \begin{cases} \mathbb{Z}^2 & n=0 \\ 0 & \text{else} \end{cases}\]
+		
+		%Theorem relating cartesian products to homology is...
+		
+		Cross product on homology is that $H_{i} (A) \times H_j(B) = H_{i+j} (A\times B)$, and it is easy to see that this extends to $H_i (A) \times H_j (B) \times H_k(C) = H_{i+j+k}(A \times B \times C)$.
+		
+		So then we have $H_{i+j+k}(X) = H_{i}(\mathbb{R} \backslash \{0\}) \times H_{j}(\mathbb{R}) \times H_{k}(\mathbb{R} \backslash \{0\})$.
+		
+		This tells us that \[H_0(X) = H_0(\mathbb{R} \backslash \{0\}) \times H_0(\mathbb{R}) \times H_0(\mathbb{R} \backslash \{0\}) = \mathbb{Z}^2 \times \mathbb{Z} \times \mathbb{Z}^2 = \mathbb{Z}^5 .\]
+		
+		To compute $H_1(X)$ we look at 
+		\[H_1(\mathbb{R} \backslash \{0\}) \times H_0(\mathbb{R}) \times H_0(\mathbb{R} \backslash \{0\}) = H_0(\mathbb{R} \backslash \{0\}) \times H_0(\mathbb{R}) \times H_1(\mathbb{R} \backslash \{0\}) = 0 \times \mathbb{Z} \times \mathbb{Z}^2 = \mathbb{Z}^3\]
+		and 
+		\[H_0(\mathbb{R} \backslash \{0\}) \times H_1(\mathbb{R}) \times H_0(\mathbb{R} \backslash \{0\}) = 0\]
+	\end{proof}
 	
 \end{enumerate}
 
@@ -122,7 +161,7 @@
 			&= \frac{x}{ \sqrt{x^2+y^2}} \\
 		\end{align*}
 		and by symmetry $\frac{\partial r}{\partial y} = \frac{y}{ \sqrt{x^2+y^2}} $.
-		
+		%
 		Now we compute $\frac{\partial \theta}{\partial x}$ and $\frac{\partial \theta}{ \partial y}$.
 		First,
 		\begin{align*}
@@ -135,11 +174,11 @@
 			\frac{\partial \theta}{\partial y} &= \frac{1}{1+(y/x)^2}\frac{\partial (y/x)}{\partial y} \\
 			&=\frac{1}{1+(y/x)^2} \cdot \frac{1}{x}\\
 			&=\frac{1}{1+(y/x)^2} \cdot \frac{x}{x^2}\\
-			&=\frac{x}{x^2+y^2} 		
+			&=\frac{x}{x^2+y^2}. 		
 		\end{align*}
-
+%
 		The chain rule tells us that
-		
+		%
 		\begin{align*}
 			 \frac{\partial}{\partial x} &= \frac{\partial }{\partial r} \frac{\partial r}{\partial x} + \frac{\partial }{\partial \theta} \frac{\partial \theta}{\partial x}  \\
 			 &= \frac{x}{\sqrt{x^2+y^2}} \frac{\partial }{\partial r}  - \frac{y}{x^2+y^2}\frac{\partial }{\partial \theta}\\
@@ -165,8 +204,20 @@
 			\end{align*}
 	\end{proof}
 	
-	%\item Determine the Lie bracket of the vector fields $x \frac{\partial}{\partial x} + y \frac{\partial}{\partial y}$ and $y \frac{\partial}{\partial x} - x \frac{\partial}{\partial y}$ on $\mathbb{R}^2$.
-	 % See Lee pg. 185
+	\item Determine the Lie bracket of the vector fields $x \frac{\partial}{\partial x} + y \frac{\partial}{\partial y}$ and $y \frac{\partial}{\partial x} - x \frac{\partial}{\partial y}$ on $\mathbb{R}^2$.
+	
+	% See Lee pg. 185
+	
+	\begin{proof}
+	
+	\end{proof}
+	
+	\item Give an example of a surjection $f: M \rightarrow N$ of manifolds that is not a submersion.
+	% Would love some back up on this one.
+	\begin{proof}
+		Consider the projection map $\pi_1: \mathbb{R}^2 \rightarrow R$ taking $(x,y) \mapsto x$. There is no right inverse to the projection map, since $\pi$ is a many-to-one map. Hence it is not a submersion.
+	\end{proof}
+	 
 \end{enumerate}
 
 \end{document}

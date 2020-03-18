@@ -1,0 +1,60 @@
+\documentclass{article}
+
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+	 \newtheorem*{theorem}{Theorem}
+	 \newtheorem{proposition}{Proposition}
+	 \newtheorem*{lemma}{Lemma}
+	 \newtheorem*{definition}{Definition}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+	
+\DeclareMathOperator{\rk}{rank}
+
+\title{Useful theorems for Manifolds and Topology Preliminary Exams}
+\author{University of Minnesota}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Manifolds}
+	Unless otherwise stated, the following definitions come from \cite{lee-ism}.
+	
+	\begin{definition}
+		A smooth map $F: M \rightarrow N$ is called a smooth immersion if its differential is injective at each point (equivalently if $\rk F= \dim M$)
+	\end{definition}
+	
+	\begin{definition}
+		Let $M$, $N$ be smooth manifolds with or without boundary. 
+		A \textbf{smooth embedding of $M$ into $N$} is a smooth immersion $F:M \rightarrow N$ which is also a topological embedding, i.e. a homeomorphism onto its image $F(M)\subseteq N$ in the subspace topology.
+		\textsc{Note:} A smooth embedding is both a topological embedding and a smooth immersion not just a topological embedding which happens to be smooth.
+	\end{definition}
+	
+
+
+\section{Topology}
+	Unless otherwise stated, the following definitions come from \cite{hatcher-at}.
+	
+
+
+\begin{thebibliography}{9}
+
+\bibitem{hatcher-at}
+Allen Hatcher.
+\textit{Algebraic Topology}
+Cambridge University Press, Cambridge, U.K., 2001
+
+\bibitem{lee-ism} 
+John M. Lee. 
+\textit{Introduction to Smooth Manifolds}. 
+Springer, New York, U.S.A., 2013
+
+\end{thebibliography}
+
+
+\end{document}
