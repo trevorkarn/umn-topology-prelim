@@ -9,6 +9,8 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 	\usetikzlibrary{cd}
+	
+\DeclareMathOperator{\Tor}{Tor}
 
 \title{\href{https://math.umn.edu/sites/math.umn.edu/files/exams/mantopf15.pdf}{Fall 2015 Manifolds and Topology Preliminary Exam}}
 \author{University of Minnesota}
@@ -90,12 +92,24 @@ Since this is a pushout diagram, then $k$ is an isomorphism.
 	\item \begin{enumerate} 
 		\item Calculate the homology groups of the torus $S^1 \times S^1$
 		\begin{proof}
-			%We know that there is one connected component, one hole (the donut hole), and one void (where the jelly filling would go). Thus, we expect the answer to be 
-			%\[H_n(S^1\times S^1) = \begin{cases} \mathbb{Z} & n = 0,1,2 \\ 0 & \text{otherwise} \end{cases}\]
+			First, we recall the fact that $H_n(S^1) = \begin{cases} \mathbb{Z} & n=0,1 \\ 0 & \text{else} \end{cases}$, and note that it is torsion-free.
+			Since we can put a CW structure on $S^1$, a K\"unneth formula gives the short exact sequence
+			\[ 0 \rightarrow \bigoplus_i H_i(S^1) \otimes H_{n-i}(S^1) \rightarrow H_{n}(S^1 \times S^1) \rightarrow \bigoplus_i \Tor(H_i(S^1), H_{n-i-1}) \rightarrow 0.\]
+			But since the homology groups are always torsion-free we obtain the isomorphism
+			\[ \bigoplus_i H_i(S^1) \otimes H_{n-i}(S^1) \cong H_n(S^1\times S^1).\]
+			When $n = 0$ we have
+			\[ H_0 (S^1) \otimes H_0(S^1) = \mathbb{Z}\otimes\mathbb{Z} \cong \mathbb{Z}. \]
+			When $n=1$ we have
+			\[ \left ( H_0(S^1) \otimes H_1(S^1) \right ) \oplus \left ( H_1(S^1) \otimes H_0(S^1) \right ) = ( \mathbb{Z} \otimes \mathbb{Z}) \oplus (\mathbb{Z} \otimes \mathbb{Z}) \cong \mathbb{Z}^2.\]
+			When $n=2$ we have
+			\[ \left ( H_0(S^1) \otimes H_2(S^1) \right ) \oplus \left ( H_1(S^1) \otimes H_1(S^1) \right ) \oplus \left ( H_2(S^1) \otimes H_0(S^1) \right )  = (\mathbb{Z} \otimes 0 ) \oplus (\mathbb{Z} \otimes \mathbb{Z} ) \oplus (0 \otimes \mathbb{Z}) \cong \mathbb{Z} \]
 			
-			%To prove this, we use the Mayer-Vietoris sequence, which states that the long exact sequence 
 			
-			%I don't think M-V, and I don't think relative homology sequence.
+			For $n > 2$ we have
+			\[ H_i(S^1) \otimes H_{n-i}(S^1)  =  \left ( \begin{cases} \mathbb{Z} \otimes  0 & i = 0,1 \\ 0 \otimes 0  &1 < i < n-1\\ 0 \otimes \mathbb{Z} & i = n-1, n\end{cases} \right ) \cong 0.\]
+			
+			Thus, we can conclude
+			\[ H_n(S^1 \times S^1) = \begin{cases} \mathbb{Z} & n=0,1,2 \\ 0 & \text{else} \end{cases} \]
 		\end{proof}
 		
 		\end{enumerate}
