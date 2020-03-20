@@ -12,6 +12,9 @@
 \usepackage{tikz}
 	\usetikzlibrary{cd}
 	\usetikzlibrary{patterns}
+	
+\DeclareMathOperator{\Tor}{Tor}
+\renewcommand{\theequation}{\roman{equation}}
 
 \title{\href{https://math.umn.edu/sites/math.umn.edu/files/exams/mantopf19.pdf}{Fall 2019 Manifolds and Topology Preliminary Exam}}
 \author{University of Minnesota}
@@ -99,7 +102,7 @@
 	\[X = \left \{ \begin{bmatrix} a & b \\ 0 & d \end{bmatrix} \in M_2 (\mathbb{R}) : a \neq 0, d \neq 0\right \} \subseteq \mathbb{R}^3\]
 	 Determine the homology groups $H_*(X)$. 
 
-	%See Hatcher section 3.D
+	%See Hatcher section 3.B
 	
 	\begin{proof}
 		First, note that $X \cong (\mathbb{R} \backslash \{0\}) \times (\mathbb{R}) \times (\mathbb{R} \backslash \{0\})\subseteq \mathbb{R}^3$ by the map taking $\begin{bmatrix} a & b \\ 0 & d \end{bmatrix} \mapsto (a,b,d)$.
@@ -112,18 +115,47 @@
 		Which means that
 		\[H_n(\mathbb{R} \backslash 0) = H_n(\mathbb{R}_{< 0}\sqcup \mathbb{R}_{> 0} ) = H_n(\mathbb{R}_{< 0}) \oplus H_n(\mathbb{R}_{> 0} )  = \begin{cases} \mathbb{Z}^2 & n=0 \\ 0 & \text{else} \end{cases}\]
 		
-		%Theorem relating cartesian products to homology is...
+		%NEED SOME EXPOSITION HERE.
 		
-		Cross product on homology is that $H_{i} (A) \times H_j(B) = H_{i+j} (A\times B)$, and it is easy to see that this extends to $H_i (A) \times H_j (B) \times H_k(C) = H_{i+j+k}(A \times B \times C)$.
+		For CW-complexes $A,B$ a K\"unneth formula tells us that the following is a short exact sequence:
+		\begin{equation} 0 \rightarrow \bigoplus_i \left ( H_i(A) \otimes H_{n-i}(B) \right ) \rightarrow H_n(A\times B) \rightarrow
+		\bigoplus_i \Tor \left ( H_i(A), H_{n-i-1}(B) \right ) \rightarrow 0 \label{seq:Kunneth}\end{equation}
 		
-		So then we have $H_{i+j+k}(X) = H_{i}(\mathbb{R} \backslash \{0\}) \times H_{j}(\mathbb{R}) \times H_{k}(\mathbb{R} \backslash \{0\})$.
+		We will first compute $H_\bullet (\mathbb{R} \times \mathbb{R}\backslash 0)$, taking $\mathbb{R} = A$ and $\mathbb{R}\backslash 0 = B$.
 		
-		This tells us that \[H_0(X) = H_0(\mathbb{R} \backslash \{0\}) \times H_0(\mathbb{R}) \times H_0(\mathbb{R} \backslash \{0\}) = \mathbb{Z}^2 \times \mathbb{Z} \times \mathbb{Z}^2 = \mathbb{Z}^5 .\]
+		Rewriting the above sequence for our case, we see 
+		\[ 0 \rightarrow \bigoplus_i \left ( H_i(\mathbb{R}) \otimes H_{n-i}(\mathbb{R}\backslash 0) \right ) \rightarrow H_n(\mathbb{R}\times \mathbb{R}\backslash 0) \rightarrow
+		\bigoplus_i \Tor \left ( H_i(\mathbb{R}), H_{n-i-1}(\mathbb{R}\backslash 0) \right ) \rightarrow 0\]
 		
-		To compute $H_1(X)$ we look at 
-		\[H_1(\mathbb{R} \backslash \{0\}) \times H_0(\mathbb{R}) \times H_0(\mathbb{R} \backslash \{0\}) = H_0(\mathbb{R} \backslash \{0\}) \times H_0(\mathbb{R}) \times H_1(\mathbb{R} \backslash \{0\}) = 0 \times \mathbb{Z} \times \mathbb{Z}^2 = \mathbb{Z}^3\]
+		First, note that for every $i$ we have $H_i(\mathbb{R})$ is torsion-free, so $\Tor \left ( H_i(\mathbb{R}), H_{n-i-1}(\mathbb{R}\backslash 0) \right ) = 0$, hence
+		\[ \bigoplus_i \left ( H_i(\mathbb{R}) \otimes H_{n-i}(\mathbb{R}\backslash 0) \right ) \cong H_n(\mathbb{R}\times \mathbb{R}\backslash 0) \]
+		
+		When $n =0$ we have 
+		\[H_0 (\mathbb{R}) \otimes H_0 (\mathbb{R} \backslash 0) = \mathbb{Z} \otimes \mathbb{Z}^2 \cong \mathbb{Z}^2\]
+		
+		When $n>0$ we have 
+		\[ H_i(\mathbb{R}) \otimes H_{n-i}(\mathbb{R}\backslash 0) = \left (\begin{cases} 
+			\mathbb{Z} \otimes 0 & i=0\\  
+			0 \otimes 0 & i \neq 0,n\\
+			0 \otimes \mathbb{Z}^2 & i = n\\
+			\end{cases} \right) = 0 ,\]
+		and so
+		\[H_{n}( \mathbb{R} \times \mathbb{R}\backslash 0) = \begin{cases} \mathbb{Z}^2 & n=0 \\ 0 &\text{else} \end{cases}.\]
+		
+		We now use (\ref{seq:Kunneth}) with $A = \mathbb{R} \backslash 0$ and $B = \mathbb{R} \times \mathbb{R} \backslash 0$ and the fact that every homology group of $A$ is torsion-free to see
+		\[ \bigoplus_i \left ( H_i(\mathbb{R} \backslash 0) \otimes H_{n-i}(\mathbb{R} \times \mathbb{R}\backslash 0) \right ) \cong H_n(\mathbb{R} \backslash 0 \times\mathbb{R}\times \mathbb{R}\backslash 0) \cong H_n(X).\]
+		
+		Arguing as above we see when $n=0$ that
+		\[ H_0(\mathbb{R} \backslash 0) \otimes H_0(\mathbb{R} \times \mathbb{R}\backslash 0) = \mathbb{Z}^2 \otimes \mathbb{Z}^2 \cong \mathbb{Z}^4,\]
 		and 
-		\[H_0(\mathbb{R} \backslash \{0\}) \times H_1(\mathbb{R}) \times H_0(\mathbb{R} \backslash \{0\}) = 0\]
+		for $n >0$ 
+		\[ H_i(\mathbb{R} \backslash 0 ) \otimes H_{n-i}(\mathbb{R} \times \mathbb{R}\backslash 0) = \left (\begin{cases} 
+			\mathbb{Z}^2 \otimes 0 & i=0\\  
+			0 \otimes 0 & i \neq 0,n\\
+			0 \otimes \mathbb{Z}^2 & i = n\\
+			\end{cases} \right) = 0 ,\]
+		and so 
+		\[ H_n(X) = \begin{cases} \mathbb{Z}^4 & n=0 \\ 0 & \text{else} \end{cases}\]
 	\end{proof}
 	
 \end{enumerate}
