@@ -15,6 +15,7 @@
 	\usetikzlibrary{decorations.markings}
 	
 \DeclareMathOperator{\Tor}{Tor}
+\newcommand{\Z}{\mathbb{Z}}
 \renewcommand{\theequation}{\roman{equation}}
 
 \title{\href{https://math.umn.edu/sites/math.umn.edu/files/exams/mantops18.pdf}{Spring 2018 Manifolds and Topology Preliminary Exam}}
@@ -140,9 +141,34 @@
 		Isomorphism classes of path connected covering spaces are in bijection with conjugacy classes of subgroups of the fundamental group. 
 		When the fundamental group is abelian, the conjugacy classes of subgroups are simply 
 		the subgroups (since $ghg^{-1} = gg^{-1} h=h$) of the group. 
-		Note that $\mathbb{Z}/2 \times \mathbb{Z}/4$ is abelian, and has $N$ % compute these.
+		Note that $\mathbb{Z}/2 \times \mathbb{Z}/4$ is abelian, and has $8$ subgroups.
 		
+		Namely, Goursat's lemma tells us the subgroups are in bijection with 5-tuples $(G_1, G_2, H_1, H_2, \varphi)$
+		where $G_1 \trianglelefteq G_2 \leq Z/2$ and $H_1 \trianglelefteq H_2 \leq \mathbb{Z}/4$, and $\varphi: G_2/G_1 \rightarrow H_2/H_1$
+		is an isomorphism. The possible pairs of $G_1,G_2$ are:
+		\[ ( \{0\},\{0\}), (\{0\}, Z/2), (\Z/2, \Z/2)\]
+		yielding quotients
+		\[ 0 \cong 0/0, \Z/2 \cong \Z/2 / 0, 0 \cong \Z/2 / \Z/2\]
+		and the possible pairs $H_1,H_2$ are:
+		\[ ( \{0\},\{0\}), (\{0\}, \Z/2), (\{0\}, \Z/4), (\Z/2, \Z/2),(\Z/2, \Z/4), (\Z/4, \Z/4) \]
+		which yield quotients:
+		\[ 0, \Z/2, \Z/4, 0, \Z/2, 0 \].
+		
+		There are 6 different 4-tuples of quotients who yield the trivial group. The only isomorphism of the trivial group is the trivial map, so
+		these contribute +6 to our count of of subgroups.
+		%
+		There are 2 different 4-tuples of quotients who yield the group $\Z/2$.
+		Similarly, there is only one isomorphism from $\Z/2$ to itself.
+		Thus, there are 8 subgroups of $\Z/2\times \Z/4$ and so there are 8 isomorphism classes of covering maps $Y \rightarrow X$ 
+		with $Y$ being path connected.
+		
+		\emph{Note:} 6 of the subgroups are of the form $G \times H$ where $G \leq \Z/2$ and $H \leq \Z/4$.
+		The two remaining subgrops are 
+		
+		\[ \langle (1,0) + (1,3) \rangle \]
 	\end{proof}
+	
+	\href{https://math.stackexchange.com/questions/666840/what-are-the-subgroups-of-bbbz-2-times-bbbz-4}{Alternate proof.}
 \end{enumerate}
 
 \section*{Part B}
