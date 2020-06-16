@@ -241,7 +241,30 @@
 	% See Lee pg. 185
 	
 	\begin{proof}
-	
+		If $M$ is a smooth manifold with or without boundary and 
+		$X = X^i \frac{\partial}{\partial x^i}$ and $Y = Y^j \frac{\partial}{\partial x^j}$
+		are vector fields, then the Lie bracket is 
+		\[ [X,Y] = \left ( X^i \frac{\partial Y^j}{\partial x^i} - Y^i \frac{ \partial X^j}{\partial x^i} \right ) \frac{\partial }{\partial x^j}.\]
+		
+		Since we are working in $\mathbb{R}^2$, then $x^1 =x$ and $x^2=y$. Define $X:= x \frac{\partial}{\partial x} + y \frac{\partial}{\partial y}$
+		so $X^1 = x$ and $X^2 = y$. Similarly $Y:= y \frac{\partial}{\partial x} - x \frac{\partial}{\partial y}$ has $Y^1 = y$ and $Y^2 = -x$.
+		So applying the formula for the Lie bracket, we get
+		that the term in front of $\partial / \partial x$ should be
+		\[ \left (x \frac{\partial y}{\partial x} - y \frac{\partial x}{\partial x} \right ) + \left (y \frac{\partial y}{\partial y} + x \frac{\partial x}{\partial y} \right)  \]	
+		which simplifies to 
+		\[ 0 - y + y +0 = 0 \]
+		and the term in front of $\partial /\partial y$ should be
+		\[  \left ( x\frac{\partial (-x)}{\partial x} - y \frac{\partial y}{\partial x} \right ) +  \left ( y \frac{\partial (-x)}{\partial y} + x \frac{\partial y}{\partial y} \right )  \]
+		which simplifies to 
+		\[ -x - 0 + 0 + x = 0.\]
+		Thus
+		\[ [X,Y] = 0 .\]
+%Sage code to confirm:
+%M.<x,y> = EuclideanSpace()
+%X = M.vector_field(x, y, name = 'X')
+%Y = M.vector_field(y,-x, name = 'Y')
+%
+%(X.bracket(Y)).display()
 	\end{proof}
 	
 	\item Give an example of a surjection $f: M \rightarrow N$ of manifolds that is not a submersion.

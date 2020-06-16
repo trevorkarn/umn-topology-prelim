@@ -97,6 +97,22 @@
 		 ${0 \rightarrow H_1(U\cap V) \neq 0}$ can never be a surjection.
 	\end{proof}
 	
+	\item For $n > 0$, define the degree of a continuous map $f: S^n \rightarrow S^n$.
+	
+	\begin{definition}
+		Let $f$ be a continuous map from $S^n$ to itself. 
+		Let $f_*$ be the induced map on homology. Then $f_*(x) = kx$ for some integer $k$.
+		Such $k$ is defined to be the degree of $f$.
+	\end{definition}
+	
+	\item Determine, with proof, the degree of the map $f: S^1 \rightarrow S^1$. Given by $(x,y) \mapsto (-x,-y)$.
+	
+	\begin{proof}
+		Consider $f = g \circ h$ where $h$ takes $(x,y) \mapsto (-x,y)$ and $g$ takes $(x,y) \mapsto (x,-y)$.
+		Then $f_*: H_\bullet(S^n) \rightarrow H_\bullet (S^n)$ is $f_* = (g \circ h)_* = g_* \circ h_*$.
+		Since $g,h$ swap hemispheres, then $\deg (f) = \deg(g)\deg(h) = (-1)^2 = 1$.
+	\end{proof}
+	
 	\setcounter{enumi}{7}
 	
 	\item Let $M$ be the M\"obius band
@@ -169,11 +185,59 @@
 	\end{proof}
 	
 	\href{https://math.stackexchange.com/questions/666840/what-are-the-subgroups-of-bbbz-2-times-bbbz-4}{Alternate proof.}
+	
+	\item Suppose $X$ is a path connected space, $A$ is a path-connected subspace, $p \in A$ and $C$ is the mapping cone
+	\[ (X \times \{ 1 \} \cup A\times [0,1])/\{ (a,0) \sim (a^\prime,0)\}\]
+	use the Seifert-van Kapen theorem to express the fundamental group $\pi_1(C, [(p,1/2)])$ 
+	in terms of the map $\pi_1(A,p) \rightarrow \pi_1(X,p)$.
 \end{enumerate}
 
 \section*{Part B}
 \begin{enumerate}
 	\item	 
+	
+	\item 
+	
+	\item
+	
+	\item
+	
+	\item
+	
+	\item
+	
+	\item Calculate the Lie bracket $[X,Y]$ of the vector fields $X = xy \frac{\partial}{\partial x}$ and $Y = x^3 \cos(x) \frac{\partial}{\partial x}$ on $\mathbb{R}^2$.
+		\begin{proof}
+		
+		First, we recall the following theorem:
+			\begin{theorem}[Coordinate formula for the Lie Bracket]
+	Let $X,Y$ be smooth vector fields on a smooth manifold $M$ with or without boundary, and let $X = X^i \frac{\partial}{\partial x^i}$
+	and $Y = Y^j \frac{\partial}{\partial x^j}$ be the coordinate expressions for $X$ and $Y$ in terms of some smooth local
+	coordinates $(x^i)$ for $M$. Then $[X,Y]$ has the following coordinate expression:
+	\[ [X,Y] = \left ( X^i \frac{ \partial Y^j}{\partial x^i} - Y^i \frac{\partial X^j}{\partial x^i} \right ) \frac{\partial }{ \partial x^j} .\]
+\end{theorem}
+
+Since we are working in $\mathbb{R}^2$ we have coordinates $x^1 = x$ and $x^2 = y$.
+We have $X = xy \frac{\partial}{\partial x} + 0 \frac{\partial}{\partial y}$, $Y = x^3 \cos x \frac{\partial}{\partial x} + 0 \frac{\partial}{\partial y}$.
+So then since $\frac{\partial 0 }{\partial x^i} = X^2 = Y^2 = 0$ we have
+\begin{align*}
+[X, Y] &= \left (xy \frac{\partial Y^1}{\partial x} - x^3 \cos x \frac{\partial X^1}{\partial x} \right ) \frac{\partial}{\partial x} \\
+%
+&=  \left (xy (3x^2 \cos x - x^3 \sin x) - x^3 y \cos (x)  \right ) \frac{\partial}{\partial x} \\
+&=  \left (2x^3y \cos x - x^4y \sin x \right ) \frac{\partial}{\partial x} \\
+\end{align*}
+%Sage code to confirm.
+%M.<x,y> = EuclideanSpace()
+%X = M.vector_field(x*y, 0, name = 'X')
+%Y = M.vector_field(x^3 * cos(x), 0, name = 'Y')
+%(X.bracket(Y)).display()
+		\end{proof}
+	
+	\item
+	
+	\item
+	
+	\item 
 \end{enumerate}
 
 \end{document}
