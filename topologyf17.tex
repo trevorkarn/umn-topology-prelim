@@ -1,0 +1,169 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+	\newtheorem*{definition}{Definition}
+	\newtheorem*{theorem}{Theorem}
+	\newtheorem*{lemma}{Lemma}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+	\usetikzlibrary{patterns}
+	
+\DeclareMathOperator{\Tor}{Tor}
+\renewcommand{\theequation}{\roman{equation}}
+
+\title{\href{https://math.umn.edu/sites/math.umn.edu/files/exams/mantopf17.pdf}{Fall 2017 Manifolds and Topology Preliminary Exam}}
+\author{University of Minnesota}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Part A}
+\begin{enumerate}
+	\item Suppose we have two paths $\alpha$ and $\beta$ from $[0,1]$ to a space $X$, starting at the same point $p$ and ending at the same point $q$. Define what it means for $\alpha, \beta$ to be homotopic, and show that this relation is symmetric.
+	
+	\begin{proof}
+	$\alpha,\beta : [0,1] \rightarrow X$ with $\alpha(0) = \beta(0) =p$ and 
+	$\alpha(1) = \beta(1) = q$ are homotopic if there is a continuous map 
+	$h:[0,1]^2 \rightarrow X$ such that $h(0,t) = \alpha(t)$ and $h(1,t) = \beta(t)$.
+	Such a map $h$ is called a homotopy. 
+	If there is a homotopy from $\alpha$ to $\beta$, 
+	we say they are homotopic, and write $\alpha \sim \beta$.
+	To see that it is symmetric, consider the map $\phi: [0,1]^2 \rightarrow [0,1]^2$ 
+	given by $(x,t) \mapsto (1-x,t)$ then $h \circ \phi(t)$ is a 
+	homotopy from $\beta$ to $\alpha$, so the relation $\sim$ is symmetric.
+	\end{proof}
+	
+	\item If $X$ and $Y$ are based spaces determine (with proof) the fundamental group 
+	$\pi_1(X \times Y, (x,y))$ in terms of $\pi_1(X, x)$ and $\pi_1(Y,y)$.
+	
+	\begin{proof}
+	Let $g \in \pi_1(X\times Y, (x,y))$. Then there is a loop
+	$\gamma$ in $X \times Y$ so that the homotopy class $[\gamma]=g$.
+	Consider the projection $p_1: X\times Y \rightarrow X$ onto the first coordinate
+	and the projection $p_2: X \times Y \rightarrow Y$  onto the second coordinate.
+	Then since $\gamma(0) = \gamma(1)$, we see that 
+	$p_i(\gamma(0)) = p_i(\gamma(1))$ and so $p_i(\gamma)$ 
+	are loops in $X,Y$ respectively. 
+	Thus the projections induce maps on fundamental groups $(p_i)_*$.
+	{\color{red} What else do I need to show??}
+	\end{proof}
+	
+	\item Give an example of a map that is a covering map but is not a homeomorphism.
+	
+	\begin{proof}
+	Let $f: \mathbb{R} \rightarrow S^1$ be the map taking $x \mapsto (\cos x, \sin x)$.
+	This is a covering map since 
+	{\color{red} explain}.
+	This is not a homeomorphism since $\pi_1(\mathbb{R}) = 0 \not \cong \mathbb{Z} \cong \pi_1(\mathbb{R})$ and the fundamental group is a homeomorphism invariant. 
+	\end{proof}
+	
+	\item Let $X$ be the space $\mathbb{RP}^2 \times \mathbb{RP}^2.$ 
+	How many isomorphism classes of covering maps $Y \rightarrow X$ are there
+	with $Y$ path-connected?
+	
+	\begin{proof}
+	{\color{red} isomorphism classes of covering maps correspond to conjugacy classes of the fundamental group so first we need to find the fundamental group of $\mathbb{RP}^2$ and then count its conjugacy classes.}
+	\end{proof}
+	
+	\item Prove that the projection map $S^2 \rightarrow \mathbb{RP}^2$ is a universal
+	cover.
+	
+	\begin{proof}
+	{\color{red} Something with simply connected covering spaces}
+	\end{proof}
+	
+	\item Suppose $X$ is a path-connected space whose fundamental group $\pi_1(X,x)$
+	is the symmetric group $\Sigma_3$ on three letters. 
+	Determine the first homology group $H_1(X)$.
+	
+	\begin{proof}
+	The first homology group is the abelianization of the fundamental group.
+	The abelianization of the symmetric group is the trivial group is isomorphic to
+	$\mathbb{Z}/2 \mathbb{Z}$ {\color{red} prove this}, and so $H_1(X) \cong \mathbb{Z}/2\mathbb{Z}$.
+	\end{proof}
+	
+	\item Suppose $X$ is a space with open subsets $U$ and $V$ such that $X$ is the 
+	union $U \cup V$, both $U$ and $V$ are path-connected, and $U \cap V$ is not 
+	path-connected (and nonempty). Show that $H_1(X)$ is nontrivial.
+	
+%	Thoughts: this does not satisfy the hypotheses of Van Kampen's theorem.
+% 	Is it true that $U \cap V$ not path connected implies $U \cap V$ has
+%	nontrivial homology? It should? Then use Mayer-Vietoris LES.
+	
+	\begin{proof}
+	
+	\end{proof}
+	
+	\item Suppose $X$ is a space and $i:A \rightarrow X$ is a map with a retraction 
+	$r: X \rightarrow A$ such that $r \circ i = id$. Show that, for all $n$, $H_*(A)$ is
+	a direct summand of $H_*(X)$.
+	
+% 	Thoughts: use a long exact sequence or relative homology here.
+	
+	\item Define the degree of a continuous map $f: S^n \rightarrow S^n$ for $n > 0$.
+	
+	\begin{definition}
+	If $f:S^n \rightarrow S^n$, for $n > 0$, then the induced map on homology $f_*$ is
+	multiplication by a constant, since $H_i(S^n) $ is $\mathbb{Z}$ 
+	when $i=0,n$ and $1$ otherwise, and the only homomorphism from 
+	$\mathbb{Z} \rightarrow \mathbb{Z}$ is multiplication by an integer.
+	So if $f_*: H_\bullet(S^n) \rightarrow H_\bullet(S^n)$ is $n \mapsto kn$,
+	then we call the integer $k$ the degree of $f$.
+	\end{definition}
+	
+	\item A weak form of the \textit{Lefshetz fixed point theorem} states the following.
+	Suppose that $X$ is a (sufficiently nice) space and $f: X \rightarrow X$ is a 
+	continuous map such that $f(x) \neq x$ for all $x \in X$. Then the Lefschetz number
+	\[ \sum_k(-1)^kTrace(f_* : H_k(X) \otimes \mathbb{R} \rightarrow H_k(X) 
+	\otimes \mathbb{R} ) \]
+	is $0$. 
+	If $X$ is a sphere (spheres are sufficiently nice), what can one conclude about 
+	the degree of a map $S^k \rightarrow S^k$ that has no fixed points.
+	
+\end{enumerate}
+
+\section*{Part B}
+\begin{enumerate}
+	\item State the Whitney embedding theorem on embeddings and immersions of 
+	$m$-dimensional smooth manifolds $M$ into $\mathbb{R}^k$.
+	
+%	Roughly it says that an $m$ dimensional smooth manifold can be embedded in $\mathbb{R}^k$ when $k \geq 2m$ though this is not necessary for $k$.
+
+	\item Give an example (with proof) of a diffeomorphism between $\mathbb{R}$ and $(0,1)$.
+	
+	\begin{proof}
+	$x \mapsto \frac{1}{\pi} \arctan(x) + \frac{1}{2}$.
+	A diffeomorphism is a differentiable homeomorphism with a differentiable inverse.
+	So we need to show our given map is (i) a homeomorphism (ii) differentiable, and (iii) has $\tan(\pi(x-\frac{1}{2}))$ differentiable.
+	
+	\end{proof}
+	
+	\item Define $f(x,y) = (x+x^4)(y^2+y)$ a smooth function from $\mathbb{R}^2$ to $\mathbb{R}$. For this function, determine the: singular points; regular points; singular values; regular values.
+	
+%	First I need the definitions of those points.
+	\begin{proof}
+
+	\end{proof}
+	
+	\item Suppose $1 < m$. Show that there are no smooth space-filling curves: if $f$
+	is a smooth function from $(0,1)$ to $\mathbb{R}^m$, show that the image of $f$ cannot contain the ball of radius $1$ around the origin. (Hint: Sard's theorem).
+	
+	\item Suppose $(x,y)$ are Cartesian coordinates on $\mathbb{R}^2$ and $(u,v)$ are new coordinates given by 
+	\begin{align*}
+		u &= 3x+y-2\\
+		v &= -x+y+5
+	\end{align*}
+	Express the vector field $x \frac{\partial}{\partial x}$ in terms of $(u,v)$-coordinates. Your answer should take the form $P(u,v) \frac{\partial}{\partial u} + Q(u,v) \frac{\partial}{\partial v}$.
+	
+	\item Calculate the exterior derivative $d\omega$ where $\omega$ is the differential form \[ e^{xyz} dx + e^{yz} dy - \cos(xz)dz \] on $\mathbb{R}^3$.
+	
+	
+
+\end{enumerate}
+
+\end{document}

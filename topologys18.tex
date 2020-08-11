@@ -190,6 +190,30 @@
 	\[ (X \times \{ 1 \} \cup A\times [0,1])/\{ (a,0) \sim (a^\prime,0)\}\]
 	use the Seifert-van Kapen theorem to express the fundamental group $\pi_1(C, [(p,1/2)])$ 
 	in terms of the map $\pi_1(A,p) \rightarrow \pi_1(X,p)$.
+	
+	\begin{proof}
+		First, we see that 
+		\[C =  (X \times \{ 1 \} \cup A\times [0,1])/\{ (a,0) \sim (a^\prime,0)\} =  (X \times \{ 1 \} ) \cup A\times [0,1] /\{ (a,0) \sim (a^\prime,0)\} \]
+		since $(a,0) \not \in X \times \{ 1\}$ for any $a$.
+		The fundamental group $\pi_1(X \times \{1 \}) = \pi_1(X)$ since clearly $X \times\{1\} \cong X$.
+		Since we set all points $(a,0)$ equal, we get that
+		$S = A\times [0,1] /\{ (a,0) \sim (a^\prime,0)\}$ is contractable (onto the point $(a,0)$). Thus it has trivial fundamental group.
+		
+		To compute $\pi_1(C, [(p,1/2)])$, we first observe that since $X,A,C$ are all path connected, the group is independent of basepoint, so we will 
+		in fact compute $\pi_1(C, [(p,1)])$ and we will just call that group $\pi_1(C)$.
+		Note that $S \cap X \times \{ 1\} \cong A$, so we can write the following diagram:
+		
+		\begin{tikzcd}
+			& \pi_1( X \times \{1\} ) \cong \pi_1 (X) \arrow[rd,dashed] \arrow[rrd, bend left]& \\
+			\pi_1(S \cap X \times \{1 \}) \cong \pi_1(A) \arrow[ru] \arrow[rd]& & \pi_1(S)*_{\pi_1(A)} \pi_1(X) \arrow[r,dashed] & \pi_1(C)\\
+			& \pi_1(S) \cong \{0\}\arrow[ru,dashed] \arrow[rru, bend right]& \\
+		\end{tikzcd}
+		
+		\noindent the left to top arrow is the map $\pi_1(A, p) \rightarrow \pi_1(X,p)$.
+		
+		(Show $X*_A0 = X/A$)
+		
+	\end{proof}
 \end{enumerate}
 
 \section*{Part B}
