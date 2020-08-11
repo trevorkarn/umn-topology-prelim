@@ -99,6 +99,19 @@
 	
 	\item Suppose $X, Y$ are spaces that are both abstractly homeomorphic to $S^7$. Show that the ``degree" of the map $f: X \rightarrow Y$ is only well-defined up to sign.
 	
+	\begin{proof}
+	Let $\phi_X$ be the isomorphism $X \rightarrow S^7$ and $\phi_Y$ be the isomorphism $Y \rightarrow S^7$.
+	Note that $S^7$ is homeomorphic to itself via both the identity map $id$ and the antipodal map $a$.
+	
+	Suppose we consider the homeomorphisms
+	\[ g: X \stackrel{\phi_X}{\rightarrow} S^7 \stackrel{id}{\rightarrow} S^7 \stackrel{\phi_Y^{-1}}{\rightarrow} Y \]
+	and
+	\[ h: X \stackrel{\phi_X}{\rightarrow} S^7 \stackrel{a}{\rightarrow} S^7 \stackrel{\phi_Y^{-1}}{\rightarrow} Y. \]
+	The antipodal map has degree $(-1)^7$, while the identity has degree $1$.
+	Now if we consider the map $f$ given in the statement of the problem, then if we consider the homeomorphism going through $id$, we could get a positive sign,
+	while if we go through $a$, we get a negative sign, hence the degree is only well defined up to sign.
+	\end{proof}
+	
 	\item Let $X$ be the space of upper triangular invertible $2\times 2$ matrices:
 	\[X = \left \{ \begin{bmatrix} a & b \\ 0 & d \end{bmatrix} \in M_2 (\mathbb{R}) : a \neq 0, d \neq 0\right \} \subseteq \mathbb{R}^3\]
 	 Determine the homology groups $H_*(X)$. 
