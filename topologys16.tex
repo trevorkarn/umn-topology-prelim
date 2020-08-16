@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\usepackage{amsthm}
+	\newtheorem*{definition}{Definition}
+	\newtheorem*{theorem}{Theorem}
+	\newtheorem*{lemma}{Lemma}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+	\usetikzlibrary{patterns}
+	
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\im}{im}
+\renewcommand{\theequation}{\roman{equation}}
+
+\title{\href{https://math.umn.edu/sites/math.umn.edu/files/exams/mantops16.pdf}{Spring 2016 Manifolds and Topology Preliminary Exam}}
+\author{University of Minnesota}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Part A}
+\begin{enumerate}
+	\item 
+%		\begin{enumerate}
+%		
+%		\item Suppose $X$ is a space with a continuous product $\mu : X \times X \rightarrow X$
+%			together with an element $e \in X$ such that $\mu(x,e) = \mu(e,x) = x$ for all $x \in X$. 
+%			For loops $\alpha, \beta : [0,1] \rightarrow X$ starting and ending at $e$, define
+%			\[ \alpha \circ \beta (t) = \mu( \alpha(t), \beta(t)) \]
+%			Suppose that $*$ is the ordinary concatenation product on loops. Show there is an 
+%			identity 
+%			\[ (\alpha * \beta) \circ ( \gamma * \delta) = (\alpha \circ \gamma) * (\beta \circ \delta). \]
+%		
+%		\item Suppose $\circ$ is the product from the previous problem. Show that it determines a well-defined
+%		product $\circ : \pi_1(X,e) \times \pi_1(X,e) \rightarrow \pi_1(X,i)$ with unit $c_e$ the trivial loop at $e$.
+%		
+%		\item Use the previous results to conclude that $\circ = *$ and both products are commutative
+%		
+%		\item Describe the fundamental group of the Klein bottle using generators and relations.
+%		
+%		\end{enumerate}
+%	
+	\item
+	
+	\item 
+		\begin{enumerate}
+		
+		\item For $n >0$ define the degree of a continuous map $S^n \rightarrow S^n$.
+		\begin{definition}
+		If $n>0$ and $f:S^n \rightarrow S^n$ is continuous map, then the induced map on homology
+		$f_*: H_n(S^n) \rightarrow H_n(S^n)$ is a homomorphism
+		$f_*: \mathbb{Z} \rightarrow \mathbb{Z}$.
+		The only homomorphism from $\mathbb{Z} \rightarrow \mathbb{Z}$ is multiplication by a constant
+		integer, so $f_*(x) = dx$ for $x \in H_n(S^n)$ and $d \in \mathbb{Z}$.
+		Then $d$ is the degree of $f$.
+		\end{definition}
+		
+		\item If $M$ is an $n$-dimensional manifold with $n > 0$ and $p \in M$, show that
+		there is an isomorphism of homology groups
+		\[ H_k(M, M\backslash \{ p\}) \cong \begin{cases} \mathbb{Z} & \text{ if $n = k$ }\\ 0 & \text{otherwise} \end{cases} \]
+		
+		\begin{proof}
+		
+		Since $M$ is a manifold, we may take an open neighborhood $U_p \cong \mathbb{R}^n$.
+		Define $C = M- U_p$. Then $M-C = U_p$ and $(M-p) - C = U_p - p$.
+		 The excision theorem tells us that
+		\[H_*( M, M - p ) \cong H_*(M - C, (M-p)- C) = H_*(U_p, U_p-p)\]
+		The long exact sequence on relative homology tells us
+		\[\begin{tikzcd}
+		\cdots \arrow[r] & \tilde{H}_k(U_p - p) \arrow[r] & \tilde{H}_k(U_p) \arrow[r] & \tilde{H}_k(U_p, U_p-p) \arrow[r] & \tilde{H}_{k-1}(U_p-p) \arrow[r] & \cdots.
+		\end{tikzcd}\]
+		We know that $U_p - p$ is homotopic to the $n-1$ sphere and since homology is a homotopy invariant, we get that
+		\[\tilde{H}_k(U_p - p ) = \tilde{H}_k(S^{n-1}) = \begin{cases} \mathbb{Z} & {k=n-1} \\ 0 & \text{otherwise} \end{cases} \]
+		and so when $k \neq n-1$, we have that 
+		$\tilde{H}_k(U_p) \cong \tilde{H}_k(U_p, U_p-p) $. Moreover $\tilde{H}_k(U_p) = 0$ for all $k$, and reduced homology agrees with
+		singular homology for $k>0$, so we have so far that
+		\[H_k(U_p, U_p-p) = \begin{cases} 0 & k \neq 0, n-1 \\ ?? & \text{otherwise} \end{cases}\]
+		Now, focusing near $k=n-1$ we have the exactness of the sequence
+		\[\begin{tikzcd}
+		\cdots \arrow[r] & H_n(U_p) \arrow[r] & H_n(U_p, U_p-p) \arrow[r]  & H_{n-1}(U_p - p) \arrow[r] & H_{n-1}(U_p) \arrow[r] & \cdots.
+		\end{tikzcd}\]
+		Since $H_n (U_p) = H_{n-1}(U_p) = 0$ the above sequence induces the isomorphism
+		$H_n(U_p, U_p-p) \cong H_{n-1}(U_p - p) \cong \mathbb{Z}$.
+		Finally, near $0$ we have
+		\[ \begin{tikzcd}
+		\cdots \arrow[r] & H_0 (U_p) \arrow[r] & H_0 (U_p, U_p-p) \arrow[r] & 0
+		\end{tikzcd} \]
+		which is exactly
+		\[ \begin{tikzcd}
+		\cdots \arrow[r] & 0 \arrow[r] & H_0 (U_p, U_p-p) \arrow[r] & 0
+		\end{tikzcd} \]
+		and so $H_0 (U_p, U_p-p) = 0$
+		\end{proof}
+
+		
+		\item Show that the subspace
+		\[ \{(x,y,z) | \text{either $(x=0)$ or $(y=z=0)$ }\} \subset \mathbb{R}^3 \]
+		is not a manifold.
+		
+		\begin{proof}
+		Suppose the subspace \emph{were} a manifold. Then in the neighborhood of $(0,0,0)$, we can find $U_0 \cong \mathbb{R}^n$ for some $n$ (perhaps the manifold is impure).
+		Then $U_0 - (0,0,0)$ is homotopic to an $n-1$ sphere. When $n \geq 1$, this means that $U_0 - (0,0,0)$ has one connected component.
+		On the other hand when $n = 0$, $U_0 - (0,0,0)$ has two connected components.
+		
+		The subspace is the union of the $x$ axis with the $y-z$-plane.
+		But we see that any neighborhood of $(0,0,0)$ in the subspace given can be broken into three disconnected components: 
+		the intersection with the positive $x$-axis, the negative $x$-axis, and the punctured $y-z$-plane missing the origin.
+		Thus every neighborhood of the origin is \emph{not} homeomorphic to Euclidean space, and so the subspace is not a manifold.
+		\end{proof}
+		
+		\item For $n \in \mathbb{Z}$ give an example of a continuous map $S^1 \rightarrow S^1$ of 
+		degree $n$.
+	
+		\begin{proof}
+		Let $f:S^1 \rightarrow S^1$ be given by $z \mapsto z^n$, where we implicitly think of $S^1 = \{ z \in \mathbb{C} : |z|=1 \}$.
+		We claim that the degree of $f$ is $n$. 
+		Let $z = e^{i \theta}$ where $\theta \in \mathbb{R}$.
+		The fiber $f^{-1}(z) = \{ z \in S^1 : z=e^{i(\theta + 2\pi k)/n}, k \in \mathbb{Z}\}$ consists of $n$ points
+		$Z = \{ e^{i \theta/n} , e^{i \theta/n + i 2\pi 1/n},..., e^{i \theta/n + i 2\pi (n-1)/n}  \}$.
+		$f$ is orientation preserving, and so $\deg f |_{z} = 1$ for all $z \in Z$.
+		Then $\deg f = \sum_{z \in Z} \deg f |_{z} = n$. 
+		\end{proof}		
+		\end{enumerate}
+	
+\end{enumerate}
+
+%\section*{Part B}
+%\begin{enumerate}
+%	\item 
+%	
+%	\item
+%	
+%	\item
+%	
+%\end{enumerate}
+\end{document}
